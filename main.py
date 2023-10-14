@@ -19,7 +19,7 @@ def get_price_from_timerange(
     except Exception as ex:
         return jsonify({"error": "Invalid request schema", "details": str(ex)}), 401
     
-    data = pd.read_csv(f'binance_{tokenPair}_{interval}.csv')
+    data = pd.read_csv(f'data/binance_{tokenPair}_{interval}.csv')
     data = data[['timestamp_close', 'price_close']]
     data = data.rename({'timestamp_close': 'timestamp', 'price_close': 'price'})
     return data.to_dict(), 200
