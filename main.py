@@ -21,8 +21,9 @@ def get_price_from_timerange(
     
     data = pd.read_csv(f'data/binance_{tokenPair}_{interval}.csv')
     data = data[['timestamp_close', 'price_close']]
-    data = data.rename({'timestamp_close': 'timestamp', 'price_close': 'price'})
-    return data.to_dict(), 200
+    data = data.rename(columns={'timestamp_close': 'timestamp', 'price_close': 'price'})
+    data = data[(data['timestamp'] >= startTime) & (data['timestamp'] <= endTime)]
+    return list(data.T.to_dict().values()), 200
 
 
 config = Config(RepositoryEnv('.env.local'))
