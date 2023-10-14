@@ -1,0 +1,21 @@
+openapi: "3.0.0"
+info:
+  title: API
+  version: '0.1'
+paths:
+  /greeting/{name}:
+    post:
+      operationId: main.hello
+      responses:
+        200:
+          description: greet a new user
+          content:
+            text/plain:
+              schema:
+                type: string
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
