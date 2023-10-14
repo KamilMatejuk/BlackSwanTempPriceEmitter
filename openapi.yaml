@@ -21,6 +21,12 @@ paths:
                       format: float
                     timestamp:
                       type: integer
+        401:
+          description: invalid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InvalidRequest"
       parameters:
         - name: tokenPair
           in: path
@@ -42,3 +48,12 @@ paths:
           required: true
           schema:
             type: integer
+components:
+  schemas:
+    InvalidRequest:
+      type: object
+      properties:
+        error:
+          type: string
+        details:
+          type: string
