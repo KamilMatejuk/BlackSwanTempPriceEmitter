@@ -1,21 +1,44 @@
 openapi: "3.0.0"
 info:
-  title: API
+  title: Temporary Price Emitter API
   version: '0.1'
 paths:
-  /greeting/{name}:
-    post:
-      operationId: main.hello
+  /price/range/{tokenPair}/{interval}/{startTime}/{endTime}:
+    get:
+      operationId: main.get_price_from_timerange
       responses:
         200:
-          description: greet a new user
+          description: get a list of prices from timerange
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
+                type: array
+                items:
+                  type: object
+                  properties:
+                    price:
+                      type: number
+                      format: float
+                    timestamp:
+                      type: integer
       parameters:
-        - name: name
+        - name: tokenPair
           in: path
           required: true
           schema:
             type: string
+        - name: interval
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: startTime
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: endTime
+          in: path
+          required: true
+          schema:
+            type: integer

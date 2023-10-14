@@ -3,8 +3,12 @@ from decouple import Config, RepositoryEnv
 from flask_socketio import SocketIO
 
 
-def hello(name: str):
-    return f'Hello {name}', 200
+def get_price_from_timerange(
+        tokenPair: str,
+        interval: str,
+        startTime: int,
+        endTime: int):
+    return {}, 200
 
 
 config = Config(RepositoryEnv('.env.local'))
