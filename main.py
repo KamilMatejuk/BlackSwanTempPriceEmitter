@@ -15,6 +15,7 @@ def get_price_from_timerange(
         assert interval == "1d", "Temporarly only 1d interval is supported"
         assert startTime >= 1503100799999, "Temporarly cannot start before 18.08.2017 (Unix 1503100799999)"
         assert endTime <= 1693180799999, "Temporarly cannot end after 27.08.2023 (Unix 1693180799999)"
+        assert startTime < endTime, "Start time has to be before end time"
     except Exception as ex:
         return jsonify({"error": "Invalid request schema", "details": str(ex)}), 401
     
